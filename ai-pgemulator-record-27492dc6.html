@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pg模拟器 · 轻量导航页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #fafafa;
+            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            padding: 0 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .page {
+            max-width: 680px;
+            margin: 0 auto;
+            width: 100%;
+            flex: 1;
+        }
+
+        /* 导航 */
+        .nav {
+            padding: 2rem 0 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .nav-brand {
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 0.01em;
+            color: #111827;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 0.9rem;
+            transition: color 0.15s;
+        }
+        .nav-links a:hover {
+            color: #111827;
+        }
+
+        /* hero */
+        .hero {
+            padding: 3.5rem 0 2.8rem;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1rem;
+            color: #4b5563;
+            max-width: 580px;
+        }
+        .hero p + p {
+            margin-top: 0.8rem;
+        }
+
+        /* 场景卡片 */
+        .section-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #9ca3af;
+            margin: 2.5rem 0 1rem;
+        }
+        .scenes {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .scene-card {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem 1.8rem;
+            transition: box-shadow 0.2s;
+        }
+        .scene-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .scene-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #4b5563;
+        }
+
+        /* 常见说明 */
+        .faq-block {
+            margin: 2rem 0 3rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-q {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+        .faq-a {
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        /* inline link */
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(37,99,235,0.2);
+            transition: border-color 0.15s;
+        }
+        a:hover {
+            border-bottom-color: #2563eb;
+        }
+
+        /* footer */
+        .footer {
+            padding: 2rem 0 3rem;
+            font-size: 0.8rem;
+            color: #9ca3af;
+            border-top: 1px solid #e5e7eb;
+            margin-top: auto;
+        }
+
+        /* 响应式 */
+        @media (max-width: 480px) {
+            body { padding: 0 1rem; }
+            .nav { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+            .nav-links { gap: 1.2rem; flex-wrap: wrap; }
+            .hero h1 { font-size: 1.8rem; }
+            .scene-card { padding: 1.2rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <nav class="nav">
+        <div class="nav-brand">pg模拟器</div>
+        <ul class="nav-links">
+            <li><a href="#intro">概览</a></li>
+            <li><a href="#scenes">应用场景</a></li>
+            <li><a href="#faq">说明</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="intro">
+        <h1>再次回来<br>持续关注</h1>
+        <p>
+            如果你曾使用过 <a href="https://ai-pgemulator.com">pg模拟器</a>，会了解它在兼容性与模拟效率上的表现。
+            这个页面为常驻访客准备——通过轻量化导航，快速定位常用场景。
+        </p>
+        <p>
+            收藏当前地址，后续更新会围绕模拟核心体验持续优化，无需反复查找入口。
+        </p>
+    </section>
+
+    <div class="section-label" id="scenes">三个常见场景</div>
+    <div class="scenes">
+        <div class="scene-card">
+            <h3>环境调试与验证</h3>
+            <p>在本地或远程环境快速启动模拟实例，验证配置、依赖与数据流向。适合开发者在迭代前期排除环境差异。</p>
+        </div>
+        <div class="scene-card">
+            <h3>功能示例参考</h3>
+            <p>通过内置的典型操作流程，了解 <a href="https://ai-pgemulator.com">pg模拟器</a> 在查询、事务、连接管理等方面的表现，缩短学习曲线。</p>
+        </div>
+        <div class="scene-card">
+            <h3>回归与持续集成</h3>
+            <p>将模拟实例嵌入 CI 流程，用于接口回归、迁移预演或长稳测试。轻量启动与回收特性适合频繁调用的自动化场景。</p>
+        </div>
+    </div>
+
+    <div class="section-label" id="faq">常见说明</div>
+    <div class="faq-block">
+        <div class="faq-item">
+            <div class="faq-q">是否需要安装额外运行时？</div>
+            <div class="faq-a">通常只需浏览器或命令行终端即可发起连接，具体依赖请参考对应版本的快速开始部分。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">数据持久化如何操作？</div>
+            <div class="faq-a">模拟器提供可选的持久化挂载方式，建议阅读文档中的存储章节以确认当前支持的卷类型。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">页面更新频率与通知方式</div>
+            <div class="faq-a">主要功能更新会同步在本页及仓库 release 说明中。你可通过收藏此页或关注项目动态获取变化。</div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <span>pg模拟器 · 轻量导航 · 内容持续整理中</span>
+    </footer>
+</div>
+</body>
+</html>
