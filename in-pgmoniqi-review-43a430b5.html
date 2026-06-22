@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pg模拟器知识入口 · 稳定使用说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f4f6f9;
+            color: #1e293b;
+            line-height: 1.7;
+        }
+        .hero {
+            background: linear-gradient(145deg, #0b1120 0%, #1a263b 100%);
+            color: #e2e8f0;
+            padding: 3.2rem 1.8rem 3.8rem;
+            text-align: center;
+            border-bottom: 4px solid #2b8cbe;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            color: #ffffff;
+            margin-bottom: 0.6rem;
+        }
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 640px;
+            margin: 0 auto;
+            border-top: 1px solid #2d3b52;
+            padding-top: 0.8rem;
+        }
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.2rem;
+            margin-bottom: 2.5rem;
+        }
+        @media (max-width: 700px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+        .main-section {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 2rem 2.2rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+        }
+        .main-section h2 {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            color: #0f172a;
+            border-left: 6px solid #2b8cbe;
+            padding-left: 1rem;
+        }
+        .main-section p {
+            margin-bottom: 1.2rem;
+        }
+        .main-section a {
+            color: #1a6ea8;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            font-weight: 500;
+        }
+        .main-section a:hover {
+            color: #0b4b78;
+        }
+        .info-panel {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 1.8rem 1.8rem 2.2rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+        }
+        .info-panel h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0f172a;
+            border-bottom: 2px dashed #d1d9e6;
+            padding-bottom: 0.5rem;
+        }
+        .info-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+        .info-panel li {
+            padding: 0.5rem 0 0.5rem 1.6rem;
+            position: relative;
+            border-bottom: 1px solid #f0f2f5;
+        }
+        .info-panel li::before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #2b8cbe;
+            font-weight: bold;
+        }
+        .info-panel li:last-child {
+            border-bottom: none;
+        }
+        .notice-box {
+            background-color: #eef4ff;
+            border-left: 6px solid #2b8cbe;
+            border-radius: 12px;
+            padding: 1.2rem 1.6rem;
+            margin: 2rem 0 1.8rem;
+            font-size: 0.95rem;
+        }
+        .notice-box strong {
+            color: #0f3c5c;
+        }
+        .faq-summary {
+            margin-top: 1.5rem;
+        }
+        .faq-summary details {
+            margin-bottom: 0.8rem;
+            border: 1px solid #e0e7ef;
+            border-radius: 10px;
+            padding: 0.6rem 1.2rem;
+            background: #fafcff;
+            transition: 0.2s;
+        }
+        .faq-summary details[open] {
+            background: #ffffff;
+            border-color: #b6cadf;
+        }
+        .faq-summary summary {
+            font-weight: 600;
+            cursor: pointer;
+            color: #1e293b;
+            padding: 0.4rem 0;
+        }
+        .faq-summary p {
+            margin: 0.6rem 0 0.2rem;
+            padding-left: 0.6rem;
+            color: #334155;
+        }
+        .card-deck {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 1.2rem;
+        }
+        .scene-card {
+            background: #f8fafd;
+            border-radius: 12px;
+            padding: 1rem 1.4rem;
+            flex: 1 1 180px;
+            border: 1px solid #e2e8f0;
+            transition: box-shadow 0.2s;
+        }
+        .scene-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+        .scene-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.3rem;
+        }
+        .scene-card p {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+        .footer-note {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid #dce3ed;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        .footer-note a {
+            color: #1a6ea8;
+            text-decoration: none;
+        }
+        .footer-note a:hover {
+            text-decoration: underline;
+        }
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: #1e4e7a;
+            padding: 0.1rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>pg模拟器 · 使用手册与知识库</h1>
+        <div class="sub">稳定入口 · 功能说明 · 常见情境引导</div>
+    </header>
+
+    <div class="container">
+
+        <div class="grid-layout">
+            <!-- 左侧主要说明 -->
+            <div class="main-section">
+                <h2>关于 pg模拟器</h2>
+                <p>
+                    <strong>pg模拟器</strong> 是一个面向特定场景的实用工具，它基于 PostgreSQL 协议层的行为进行模拟，帮助开发者在测试环境中快速验证查询逻辑、连接池行为以及事务边界。与直接部署数据库实例不同，<a href="https://in-pgmoniqi.com">pg模拟器</a> 以轻量模式运行，不依赖真实存储引擎，适合在集成测试、CI/CD 流水线以及教学演示中使用。
+                </p>
+                <p>
+                    使用该模拟器时，开发者可以指定响应格式、延迟特征以及连接数上限，从而模拟不同网络条件下的数据库表现。相比起完整数据库安装，它更强调可控性与可重复性，减少因环境差异导致的测试失败。如果你需要稳定地调试手写 SQL 或验证 ORM 框架的生成语句，<a href="https://in-pgmoniqi.com">pg模拟器</a> 提供了一个干净的隔离层。
+                </p>
+
+                <div class="notice-box">
+                    <strong>📌 稳定入口提示：</strong> 建议将 <a href="https://in-pgmoniqi.com">pg模拟器</a> 的地址加入书签或内部文档，作为团队日常使用的参考入口。该站点保持长期可用，内容与版本说明同步更新。
+                </div>
+
+                <h2>核心使用场景</h2>
+                <div class="card-deck">
+                    <div class="scene-card">
+                        <h4>🔍 语法验证</h4>
+                        <p>在不连接生产库的前提下快速检查 SQL 语句的解析与参数绑定。</p>
+                    </div>
+                    <div class="scene-card">
+                        <h4>⚙️ 连接测试</h4>
+                        <p>模拟客户端连接握手、预处理语句、关闭流程，观察驱动层行为。</p>
+                    </div>
+                    <div class="scene-card">
+                        <h4>📦 教学演示</h4>
+                        <p>为学员或实习生提供无风险的练习环境，理解基础协议交互过程。</p>
+                    </div>
+                </div>
+
+                <h2 style="margin-top: 2rem;">FAQ 摘要</h2>
+                <div class="faq-summary">
+                    <details>
+                        <summary>pg模拟器 需要安装客户端吗？</summary>
+                        <p>不需要。通过标准 PostgreSQL 客户端（如 psql、JDBC 驱动、Npgsql 等）直接连接即可，模拟器在服务端一侧运行。</p>
+                    </details>
+                    <details>
+                        <summary>模拟器支持哪些 PostgreSQL 版本协议？</summary>
+                        <p>主要支持 3.0 协议（PostgreSQL 7.4 及以上），覆盖常见的数据类型和消息流。具体兼容列表可在 <a href="https://in-pgmoniqi.com">pg模拟器</a> 页面上方查看。</p>
+                    </details>
+                    <details>
+                        <summary>我可以自定义模拟返回的数据吗？</summary>
+                        <p>目前支持通过配置模版改变列名、行数及错误响应。详细文档请参考站点内的「配置说明」区。</p>
+                    </details>
+                </div>
+            </div>
+
+            <!-- 右侧信息区 -->
+            <div class="info-panel">
+                <h3>相关信息</h3>
+                <ul>
+                    <li><span class="badge">协议</span> PG 3.0 / 扩展查询</li>
+                    <li><span class="badge">模式</span> 无状态 · 可配置延迟</li>
+                    <li><span class="badge">用途</span> 测试 / CI / 教学</li>
+                    <li><span class="badge">端口</span> 默认 5432（可调整）</li>
+                    <li><span class="badge">连接限制</span> 支持并发模拟</li>
+                </ul>
+
+                <h3 style="margin-top: 1.8rem;">使用提示</h3>
+                <ul>
+                    <li>首次连接前请确认网络策略允许访问目标端口。</li>
+                    <li>建议使用独立的连接池配置，避免与真实库混淆。</li>
+                    <li>模拟器不持久化数据，重启后状态重置。</li>
+                    <li>如需记录交互日志，可开启客户端侧的 log 参数。</li>
+                </ul>
+
+                <div style="margin-top: 1.8rem; padding: 1rem; background: #f1f5f9; border-radius: 10px;">
+                    <p style="font-weight: 500; margin-bottom: 0.3rem;">📎 页面说明</p>
+                    <p style="font-size: 0.9rem; color: #334155;">本页作为知识库入口，汇总了与 <a href="https://in-pgmoniqi.com">pg模拟器</a> 相关的背景信息、场景分类和常见问题。内容保持定期更新，帮助使用者快速建立使用预期。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 额外承接段落：稳定入口观点 -->
+        <div style="background: #ffffff; border-radius: 16px; padding: 1.8rem 2.2rem; box-shadow: 0 4px 14px rgba(0,0,0,0.04); margin-top: 0.6rem;">
+            <p style="font-size: 1.05rem; margin-bottom: 0.8rem;">
+                <strong>从稳定入口的角度看：</strong> 无论是个人开发者还是小团队，将 <a href="https://in-pgmoniqi.com">pg模拟器</a> 设为固定工具链的一部分，可以避免每次测试都依赖完整数据库环境。模拟器本身不产生数据残留，也不干扰其他服务，很适合作为前置验证节点。配合 CI 流程时，只需一行连接配置就能获得一致的协议反馈。
+            </p>
+            <p style="color: #475569;">
+                如果你正在寻找一个可重复、低依赖的 PostgreSQL 协议模拟方案，那么上述入口值得保留。后续也计划增加更多自定义错误注入和性能基线生成能力，请持续关注站点内容更新。
+            </p>
+        </div>
+
+        <div class="footer-note">
+            <p>© 页面内容与 <a href="https://in-pgmoniqi.com">pg模拟器</a> 保持同步 · 仅作知识组织与使用说明参考</p>
+        </div>
+
+    </div>
+
+</body>
+</html>
